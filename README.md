@@ -20,7 +20,7 @@ Call the `neat.Open` method to get a `sql.DB` handle and use the methods prefixe
 
 ```go
 
-db, err := go_neat.Open("sqlite", getTempPath("neat.db"))
+db, err := go_neat.Open("sqlite", "./neat.db")
 if err != nil {
     panic(err)
 }
@@ -33,6 +33,7 @@ if _, err = db.NeatCreateTable(model); err != nil {
     panic(err)
 }
 
+// Inserts a new row with id=1 and name='John Doe'
 if _, err := db.NeatInsert(model); err != nil {
     panic(err)
 }
@@ -41,6 +42,7 @@ factory := func() interface{} {
     return &Client{}
 }
 
+// Selects and prints the Client with id=1
 if result, err := db.NeatSelectOne("SELECT id, name FROM CLIENT WHERE id=?", factory, 1); err == nil {
     fmt.Println(result.(*Client)) // Output: &{1 John Doe }
 }
