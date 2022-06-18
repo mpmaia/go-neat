@@ -2,6 +2,8 @@ package go_neat
 
 import (
 	"fmt"
+	"github.com/mpmaia/goneat/drivers/sqlite"
+	"github.com/mpmaia/goneat/internal/test"
 	_ "modernc.org/sqlite"
 )
 
@@ -12,7 +14,7 @@ type Client struct {
 }
 
 func ExampleNeatCreateTable() {
-	db, err := Open("sqlite", getTempPath("neat.db"))
+	db, err := Open(sqlite.NewSqliteDriver(), test.GetTempPath("neat.db"))
 	if err != nil {
 		panic(err)
 	}
@@ -41,7 +43,7 @@ func ExampleNeatCreateTable() {
 }
 
 func ExampleNeatUpdate() {
-	db, err := Open("sqlite", getTempPath("neat.db"))
+	db, err := Open(sqlite.NewSqliteDriver(), test.GetTempPath("neat.db"))
 	if err != nil {
 		panic(err)
 	}
