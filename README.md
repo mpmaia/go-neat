@@ -20,7 +20,7 @@ Call the `neat.Open` method to get a `sql.DB` handle and use the methods prefixe
 
 ```go
 
-db, err := go_neat.Open("sqlite", "./neat.db")
+db, err := Open(sqlite.NewSqliteDriver(), test.GetTempPath("neat.db"))
 if err != nil {
     panic(err)
 }
